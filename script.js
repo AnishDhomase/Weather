@@ -10,19 +10,18 @@ const description = document.querySelector('.weatherBox .description');
 const humidity = document.querySelector('.weatherDetails .humidity span');
 const wind = document.querySelector('.weatherDetails .wind span');
                       
-const ApiKey = 'e143c80458d46609cd18d5cfe88a643a';
-
 
 searchBtn.addEventListener("click", ()=>{
     const cityName = searchinput.value;
     if(cityName == ''){
         temperature.innerHTML = `〰️<span>°C</span>`;
-        description.innerHTML = `---`;
+        description.innerHTML = `Enter Location First`;
         humidity.innerHTML = `~ %`;
         wind.innerHTML = `~ Km/hr`;
         image.src = '404.png';
         return;
     } 
+    const ApiKey = 'e143c80458d46609cd18d5cfe88a643a';
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${ApiKey}`).then(response => response.json()).then(json => {
         switch (json.weather[0].main){
             case 'Clear':
