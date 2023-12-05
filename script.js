@@ -15,8 +15,14 @@ const ApiKey = 'e143c80458d46609cd18d5cfe88a643a';
 
 searchBtn.addEventListener("click", ()=>{
     const cityName = searchinput.value;
-    if(cityName == '')
+    if(cityName == ''){
+        temperature.innerHTML = `〰️<span>°C</span>`;
+        description.innerHTML = `---`;
+        humidity.innerHTML = `~ %`;
+        wind.innerHTML = `~ Km/hr`;
+        image.src = '404.png';
         return;
+    } 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${ApiKey}`).then(response => response.json()).then(json => {
         switch (json.weather[0].main){
             case 'Clear':
@@ -38,7 +44,7 @@ searchBtn.addEventListener("click", ()=>{
                     image.src = 'mist.png';
                     break;
             default:
-                    image.src = 'cloud.png';
+                    image.src = '404.png';
         }
         temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
         description.innerHTML = `${json.weather[0].description}`;
