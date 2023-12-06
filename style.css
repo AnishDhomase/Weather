@@ -12,17 +12,19 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('background.jpg');
+    background: url('b4.jpg');
     background-size: cover;
     background-position: center;
 }
 
 .container{
+    margin: 2px;
     position: relative;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     height: 555px;
     background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(25px);
+    backdrop-filter: blur(55px);
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     padding: 20px;
@@ -84,6 +86,7 @@ body{
 }
 
 .weatherBox img{
+    min-width: 200px;
     width: 60%;
 }
 
@@ -135,19 +138,81 @@ body{
 
 
 .weatherDetails i{
-    font-size: 56px;
+    font-size: 50px;
     margin-right: 10px;
 }
 
 .weatherDetails span{
     display: inline-block;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
 }
 
 .weatherDetails p{
     font-size: 14px;
     font-weight: 500;
+}
+
+@media screen and (max-width:420px){
+    .container{
+        margin: 2px;
+        height: 555px;
+        padding: 12px;
+    }
+    .searchBox{
+        height: 55px;
+    }
+    
+    .searchBox i{
+        font-size: 22px;
+    }
+    
+    .searchBox input{
+        font-size: 19px;
+    }
+    
+    .searchBox button{
+        width: 40px;
+        font-size: 22px;
+        padding: 0 40px 0 5px;
+    }
+
+    .weatherDetails .humidity,
+    .weatherDetails .wind{
+        display: flex;
+        align-items: center;
+        width: 50%;
+    }
+
+    .weatherDetails .humidity{
+        padding-left: 10px;
+    }
+
+    .weatherDetails .wind{
+        padding-right: 10px;
+    }
+
+
+    .weatherDetails i.icn{
+        font-size: 40px;
+        margin-right: 10px;
+    }
+
+    .weatherDetails span{
+        display: inline-block;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    .weatherDetails p{
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .weatherDetails{
+        bottom: 50px;
+        padding: 0 20px;
+    }
 }
 
 

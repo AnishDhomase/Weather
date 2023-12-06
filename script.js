@@ -14,10 +14,10 @@ const wind = document.querySelector('.weatherDetails .wind span');
 searchBtn.addEventListener("click", ()=>{
     const cityName = searchinput.value;
     if(cityName == ''){
-        temperature.innerHTML = `〰️<span>°C</span>`;
-        description.innerHTML = `Enter Location First`;
-        humidity.innerHTML = `~ %`;
-        wind.innerHTML = `~ Km/hr`;
+        temperature.innerHTML = `🫧<span>°C</span>`;
+        description.innerHTML = `Enter Location First !`;
+        humidity.innerHTML = `🫧 %`;
+        wind.innerHTML = `🫧 Km/hr`;
         image.src = '404.png';
         return;
     } 
