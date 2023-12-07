@@ -19,6 +19,19 @@ searchBtn.addEventListener("click", ()=>{
         humidity.innerHTML = `🫧 %`;
         wind.innerHTML = `🫧 Km/hr`;
         image.src = '404.png';
+        
+        image.classList.add("Fade");
+        temperature.classList.add("Rotate");
+        description.classList.add("Fade");
+        humidity.classList.add("Rotate");
+        wind.classList.add("Rotate");
+        setTimeout(function(){
+                image.classList.remove("Fade");
+                temperature.classList.remove("Rotate");
+                description.classList.remove("Fade");
+                humidity.classList.remove("Rotate");
+                wind.classList.remove("Rotate");
+        },3001);
         return;
     } 
     const ApiKey = 'e143c80458d46609cd18d5cfe88a643a';
@@ -49,5 +62,20 @@ searchBtn.addEventListener("click", ()=>{
         description.innerHTML = `${json.weather[0].description}`;
         humidity.innerHTML = `${json.main.humidity} %`;
         wind.innerHTML = `${parseInt(json.wind.speed)} Km/hr`;
+
+        image.classList.add("Fade");
+        temperature.classList.add("Rotate");
+        description.classList.add("Fade");
+        humidity.classList.add("Rotate");
+        wind.classList.add("Rotate");
+        setTimeout(function(){
+                image.classList.remove("Fade");
+                temperature.classList.remove("Rotate");
+                description.classList.remove("Fade");
+                humidity.classList.remove("Rotate");
+                wind.classList.remove("Rotate");
+        },3001);
+        
+
     });
 })
