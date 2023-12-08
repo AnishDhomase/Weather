@@ -22,7 +22,7 @@ body{
     position: relative;
     width: 100%;
     max-width: 400px;
-    height: 555px;
+    height: 100px;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(55px);
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -30,6 +30,7 @@ body{
     padding: 20px;
     color: rgb(47, 46, 46);
     color: white;
+    transition: height 0.5s ease-in-out;
 }
 
 .searchBox{
@@ -81,6 +82,10 @@ body{
     color: white;
     padding: 0 40px 0 5px;
     cursor: pointer;
+    transition: all 0.1s ease;
+}
+.searchBox button:hover{
+    transform: scale(1.06);
 }
 
 .weatherBox{
@@ -130,6 +135,8 @@ body{
     width: 50%;
 }
 
+
+
 .weatherDetails .humidity{
     padding-left: 20px;
     justify-content: flex-start;
@@ -156,6 +163,40 @@ body{
     font-size: 14px;
     font-weight: 500;
 }
+
+.weatherBox,
+.weatherDetails,
+.notFound{
+    visibility: hidden;
+}
+.weatherBox.active,
+.weatherDetails.active,
+.notFound.active{
+    visibility: visible;
+}
+
+.notFound{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 110px;
+}
+
+.notFound img{
+    width: 65%;
+}
+
+.notFound p{
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 12px;
+    color: rgb(53, 55, 79);
+
+}
+
+
 .animSlideDown{
     animation: slideDown 1s ease;
 }
@@ -212,6 +253,7 @@ body{
         margin: 2px;
         height: 555px;
         padding: 12px;
+        height: 85px;
     }
     .searchBox{
         height: 55px;

@@ -3,6 +3,9 @@ const searchBtn = document.querySelector('.searchBox button');
 const searchinput= document.querySelector('.searchBox input');
 const weatherBox = document.querySelector('.weatherBox');
 const weatherDetails = document.querySelector('.weatherDetails');
+const errorNotFound = document.querySelector(".notFound");
+const errorNotFoundP = document.querySelector(".notFound p");
+const errorNotFoundImg = document.querySelector(".notFound img");
 
 const image = document.querySelector('.weatherBox img');
 const temperature = document.querySelector('.weatherBox .temp');
@@ -14,28 +17,62 @@ const wind = document.querySelector('.weatherDetails .wind span');
 searchBtn.addEventListener("click", ()=>{
     const cityName = searchinput.value;
     if(cityName == ''){
-        temperature.innerHTML = `🫧<span>°C</span>`;
-        description.innerHTML = `Enter Location First !`;
-        humidity.innerHTML = `🫧 %`;
-        wind.innerHTML = `🫧 Km/hr`;
-        image.src = '404.png';
-        
-        image.classList.add("Fade");
-        temperature.classList.add("Rotate");
-        description.classList.add("Fade");
-        humidity.classList.add("Rotate");
-        wind.classList.add("Rotate");
+        searchBtn.classList.remove("fa-magnifying-glass");
+        searchBtn.classList.add("fa-ban");
+
+        errorNotFoundImg.classList.add("Grow");
+        errorNotFoundP.classList.add("Rotate");
+
+        container.style.height = "400px";
+        weatherBox.classList.remove("active");
+        weatherDetails.classList.remove("active");
+        errorNotFound.classList.add("active");
+        errorNotFoundP.innerHTML = "Please Enter Location First!";
+
         setTimeout(function(){
-                image.classList.remove("Fade");
-                temperature.classList.remove("Rotate");
-                description.classList.remove("Fade");
-                humidity.classList.remove("Rotate");
-                wind.classList.remove("Rotate");
+                searchBtn.classList.remove("fa-ban");
+                searchBtn.classList.add("fa-magnifying-glass");
+        },1001);
+        setTimeout(function(){
+                errorNotFoundImg.classList.remove("Grow");
+                errorNotFoundP.classList.remove("Rotate");
         },3001);
         return;
-    } 
+    }
+
     const ApiKey = 'e143c80458d46609cd18d5cfe88a643a';
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${ApiKey}`).then(response => response.json()).then(json => {
+        if(json.cod == '404'){
+                searchBtn.classList.remove("fa-magnifying-glass");
+                searchBtn.classList.add("fa-ban");
+
+                errorNotFoundImg.classList.add("Grow");
+                errorNotFoundP.classList.add("Rotate");
+
+                container.style.height = "400px";
+                weatherBox.classList.remove("active");
+                weatherDetails.classList.remove("active");
+                errorNotFound.classList.add("active");
+                errorNotFoundP.innerHTML = "Ooops! Location not found";
+                setTimeout(function(){
+                        searchBtn.classList.remove("fa-ban");
+                        searchBtn.classList.add("fa-magnifying-glass");
+                },1001);
+                setTimeout(function(){
+                        errorNotFoundImg.classList.remove("Grow");
+                        errorNotFoundP.classList.remove("Rotate");
+                },3001);
+                return;
+        }
+        
+        searchBtn.classList.remove("fa-magnifying-glass");
+        searchBtn.classList.add("fa-check");
+
+        container.style.height = "555px";
+        weatherBox.classList.add("active");
+        weatherDetails.classList.add("active");
+        errorNotFound.classList.remove("active");
+
         switch (json.weather[0].main){
             case 'Clear':
                     image.src = 'clear.png';
@@ -68,6 +105,10 @@ searchBtn.addEventListener("click", ()=>{
         description.classList.add("Fade");
         humidity.classList.add("Rotate");
         wind.classList.add("Rotate");
+        setTimeout(function(){
+                searchBtn.classList.remove("fa-check");
+                searchBtn.classList.add("fa-magnifying-glass");
+        },1001);
         setTimeout(function(){
                 image.classList.remove("Fade");
                 temperature.classList.remove("Rotate");
